@@ -1,0 +1,1145 @@
+<!DOCTYPE html>
+<html lang="sq">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>THE NEXT LEVEL | Masterclass Falas | Beyond Money Minds</title>
+  <meta name="description" content="Seminari online FALAS 10-11 Prill 2026. Mëso si funksionon Crypto, Forex dhe si krijojnë të ardhura tregjet financiare. Regjistrohu tani!">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #060608;
+      --bg-card: rgba(15, 15, 20, 0.85);
+      --gold: #d4af37;
+      --gold-light: #f0d060;
+      --gold-muted: #a08520;
+      --gold-glow: rgba(212, 175, 55, 0.15);
+      --text: #eee;
+      --text-muted: #999;
+      --white: #ffffff;
+      --danger: #ff4444;
+      --radius: 20px;
+      --radius-sm: 12px;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+      line-height: 1.7;
+    }
+
+    /* ===== Ambient Background ===== */
+    .ambient {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+    .ambient .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(120px);
+      opacity: 0.25;
+      animation: orbFloat 20s ease-in-out infinite alternate;
+    }
+    .orb.o1 { width: 600px; height: 600px; background: var(--gold); top: -10%; left: -10%; }
+    .orb.o2 { width: 500px; height: 500px; background: #b8860b; bottom: 20%; right: -15%; animation-delay: -7s; }
+    .orb.o3 { width: 400px; height: 400px; background: var(--gold-light); top: 50%; left: 40%; animation-delay: -14s; }
+
+    @keyframes orbFloat {
+      0% { transform: translate(0, 0) scale(1); }
+      50% { transform: translate(40px, -30px) scale(1.1); }
+      100% { transform: translate(-20px, 20px) scale(0.95); }
+    }
+
+    /* ===== Particles ===== */
+    .particles {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+    }
+    .particle {
+      position: absolute;
+      width: 3px;
+      height: 3px;
+      background: var(--gold);
+      border-radius: 50%;
+      opacity: 0;
+      animation: particleRise 8s linear infinite;
+    }
+    @keyframes particleRise {
+      0% { opacity: 0; transform: translateY(100vh) scale(0); }
+      10% { opacity: 0.6; }
+      90% { opacity: 0.3; }
+      100% { opacity: 0; transform: translateY(-20vh) scale(1); }
+    }
+
+    /* ===== Navigation ===== */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 3rem;
+      background: rgba(6, 6, 8, 0.9);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(212, 175, 55, 0.15);
+    }
+    .nav img {
+      height: 45px;
+    }
+    .nav-cta {
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      color: #000;
+      padding: 0.6rem 1.8rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.85rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 20px rgba(212, 175, 55, 0.3);
+    }
+    .nav-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 30px rgba(212, 175, 55, 0.5);
+    }
+
+    /* ===== Sections ===== */
+    .section {
+      position: relative;
+      z-index: 1;
+      padding: 6rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-tag {
+      display: inline-block;
+      padding: 0.4rem 1.2rem;
+      border: 1px solid var(--gold-muted);
+      border-radius: 50px;
+      font-size: 0.75rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      color: var(--gold-light);
+      margin-bottom: 1rem;
+      line-height: 1.2;
+    }
+
+    .section-subtitle {
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      max-width: 700px;
+      line-height: 1.8;
+    }
+
+    /* ===== HERO ===== */
+    .hero {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 8rem 2rem 4rem;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(212, 175, 55, 0.1);
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      padding: 0.5rem 1.5rem;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      color: var(--gold);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 2rem;
+      animation: pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.3); }
+      50% { box-shadow: 0 0 0 12px rgba(212, 175, 55, 0); }
+    }
+
+    .hero-date {
+      font-size: 1.1rem;
+      color: var(--gold);
+      font-weight: 600;
+      margin-bottom: 1rem;
+      letter-spacing: 2px;
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.5rem, 7vw, 5rem);
+      font-weight: 900;
+      background: linear-gradient(135deg, var(--gold-light), var(--gold), #fff5cc);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 1.5rem;
+      line-height: 1.15;
+    }
+
+    .hero-desc {
+      font-size: 1.2rem;
+      color: var(--text-muted);
+      max-width: 650px;
+      margin: 0 auto 2.5rem;
+      line-height: 1.8;
+    }
+
+    .hero-desc strong {
+      color: var(--gold-light);
+    }
+
+    /* ===== Countdown ===== */
+    .countdown {
+      display: flex;
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .countdown-box {
+      background: var(--bg-card);
+      border: 1px solid rgba(212, 175, 55, 0.2);
+      border-radius: var(--radius-sm);
+      padding: 1.2rem 1.5rem;
+      min-width: 90px;
+      text-align: center;
+      backdrop-filter: blur(10px);
+    }
+    .countdown-box .num {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--gold-light);
+      line-height: 1;
+    }
+    .countdown-box .label {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-top: 0.3rem;
+    }
+
+    /* ===== CTA Button ===== */
+    .cta-btn {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      color: #000;
+      padding: 1.1rem 3rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 800;
+      font-size: 1.05rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      transition: all 0.4s ease;
+      box-shadow: 0 8px 40px rgba(212, 175, 55, 0.35);
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+      transition: left 0.6s ease;
+    }
+    .cta-btn:hover::before { left: 100%; }
+    .cta-btn:hover {
+      transform: translateY(-3px) scale(1.03);
+      box-shadow: 0 12px 50px rgba(212, 175, 55, 0.5);
+    }
+
+    .cta-sub {
+      display: block;
+      margin-top: 1rem;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+    .cta-sub .free { color: var(--gold); font-weight: 700; }
+
+    /* ===== Speaker Cards ===== */
+    .speakers-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .speaker-card {
+      background: var(--bg-card);
+      border: 1px solid rgba(212, 175, 55, 0.15);
+      border-radius: var(--radius);
+      padding: 2.5rem 2rem;
+      text-align: center;
+      transition: all 0.4s ease;
+      backdrop-filter: blur(10px);
+      position: relative;
+      overflow: hidden;
+    }
+    .speaker-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--gold), var(--gold-light), var(--gold));
+    }
+    .speaker-card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(212, 175, 55, 0.4);
+      box-shadow: 0 20px 60px rgba(212, 175, 55, 0.12);
+    }
+
+    .speaker-img {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: top;
+      border: 3px solid var(--gold);
+      margin-bottom: 1.5rem;
+      box-shadow: 0 0 30px rgba(212, 175, 55, 0.2);
+      transition: all 0.4s ease;
+    }
+    .speaker-card:hover .speaker-img {
+      box-shadow: 0 0 50px rgba(212, 175, 55, 0.4);
+      transform: scale(1.05);
+    }
+
+    .speaker-tag {
+      display: inline-block;
+      background: rgba(212, 175, 55, 0.15);
+      color: var(--gold);
+      padding: 0.3rem 1rem;
+      border-radius: 50px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 0.8rem;
+    }
+
+    .speaker-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      color: var(--gold-light);
+      margin-bottom: 0.5rem;
+    }
+
+    .speaker-role {
+      font-size: 0.9rem;
+      color: var(--gold-muted);
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .speaker-bio {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+    }
+
+    .speaker-ig {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      color: var(--gold);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: color 0.3s;
+    }
+    .speaker-ig:hover { color: var(--gold-light); }
+
+    /* ===== Day Schedule ===== */
+    .day-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .day-card {
+      background: var(--bg-card);
+      border: 1px solid rgba(212, 175, 55, 0.15);
+      border-radius: var(--radius);
+      padding: 2.5rem 2rem;
+      backdrop-filter: blur(10px);
+      transition: all 0.4s ease;
+    }
+    .day-card:hover {
+      border-color: rgba(212, 175, 55, 0.35);
+      transform: translateY(-5px);
+    }
+
+    .day-label {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      color: #000;
+      padding: 0.4rem 1.2rem;
+      border-radius: 50px;
+      font-size: 0.75rem;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+
+    .day-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      color: var(--gold-light);
+      margin-bottom: 0.5rem;
+    }
+
+    .day-time {
+      color: var(--gold-muted);
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 1.2rem;
+    }
+
+    .day-topics {
+      list-style: none;
+    }
+    .day-topics li {
+      padding: 0.6rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      color: var(--text);
+      font-size: 0.95rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.8rem;
+    }
+    .day-topics li:last-child { border-bottom: none; }
+    .day-topics li::before {
+      content: '✦';
+      color: var(--gold);
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .day-speakers {
+      margin-top: 1.5rem;
+      display: flex;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+    }
+    .day-speaker-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(212, 175, 55, 0.1);
+      border: 1px solid rgba(212, 175, 55, 0.2);
+      padding: 0.3rem 0.8rem 0.3rem 0.3rem;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      color: var(--gold);
+      font-weight: 600;
+    }
+    .day-speaker-chip img {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: top;
+    }
+
+    /* ===== Benefits ===== */
+    .benefits-list {
+      margin-top: 2.5rem;
+    }
+    .benefit-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      padding: 1.2rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    .benefit-icon {
+      flex-shrink: 0;
+      width: 42px;
+      height: 42px;
+      background: rgba(212, 175, 55, 0.1);
+      border: 1px solid rgba(212, 175, 55, 0.25);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+    }
+    .benefit-text {
+      font-size: 1.05rem;
+      line-height: 1.6;
+    }
+    .benefit-text strong {
+      color: var(--gold-light);
+    }
+
+    /* ===== Target Audience ===== */
+    .target-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 2.5rem;
+    }
+    .target-item {
+      background: var(--bg-card);
+      border: 1px solid rgba(212, 175, 55, 0.12);
+      border-radius: var(--radius-sm);
+      padding: 1.8rem 1.5rem;
+      backdrop-filter: blur(10px);
+      transition: all 0.3s ease;
+    }
+    .target-item:hover {
+      border-color: rgba(212, 175, 55, 0.3);
+      transform: translateY(-3px);
+    }
+    .target-emoji {
+      font-size: 2rem;
+      margin-bottom: 0.8rem;
+    }
+    .target-item h4 {
+      color: var(--gold-light);
+      font-size: 1rem;
+      margin-bottom: 0.5rem;
+    }
+    .target-item p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    /* ===== Why Section ===== */
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+    .why-card {
+      background: var(--bg-card);
+      border: 1px solid rgba(212, 175, 55, 0.12);
+      border-radius: var(--radius);
+      padding: 2rem;
+      backdrop-filter: blur(10px);
+      transition: all 0.3s ease;
+    }
+    .why-card:hover {
+      border-color: rgba(212, 175, 55, 0.3);
+    }
+    .why-icon {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+    .why-card h4 {
+      color: var(--gold-light);
+      font-size: 1.1rem;
+      margin-bottom: 0.8rem;
+    }
+    .why-card p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      line-height: 1.7;
+    }
+
+    /* ===== Quote ===== */
+    .quote-block {
+      background: linear-gradient(135deg, rgba(212,175,55,0.08), rgba(212,175,55,0.02));
+      border: 1px solid rgba(212, 175, 55, 0.2);
+      border-radius: var(--radius);
+      padding: 3rem;
+      text-align: center;
+      margin: 4rem 0;
+      position: relative;
+    }
+    .quote-block::before {
+      content: '"';
+      font-family: 'Playfair Display', serif;
+      font-size: 6rem;
+      color: var(--gold-muted);
+      opacity: 0.3;
+      position: absolute;
+      top: -0.5rem;
+      left: 2rem;
+      line-height: 1;
+    }
+    .quote-text {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      color: var(--gold-light);
+      font-style: italic;
+      line-height: 1.6;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    /* ===== FAQ ===== */
+    .faq-list {
+      margin-top: 2.5rem;
+    }
+    .faq-item {
+      background: var(--bg-card);
+      border: 1px solid rgba(212, 175, 55, 0.1);
+      border-radius: var(--radius-sm);
+      margin-bottom: 1rem;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+    .faq-item:hover {
+      border-color: rgba(212, 175, 55, 0.25);
+    }
+    .faq-q {
+      padding: 1.2rem 1.5rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-weight: 600;
+      color: var(--text);
+      font-size: 1rem;
+      user-select: none;
+    }
+    .faq-q::after {
+      content: '+';
+      color: var(--gold);
+      font-size: 1.5rem;
+      font-weight: 300;
+      transition: transform 0.3s;
+    }
+    .faq-item.open .faq-q::after {
+      transform: rotate(45deg);
+    }
+    .faq-a {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease, padding 0.4s ease;
+    }
+    .faq-item.open .faq-a {
+      max-height: 200px;
+      padding: 0 1.5rem 1.2rem;
+    }
+    .faq-a p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      line-height: 1.7;
+    }
+
+    /* ===== CTA Section ===== */
+    .cta-section {
+      text-align: center;
+      padding: 5rem 2rem;
+      position: relative;
+      z-index: 1;
+    }
+    .cta-section .section-title {
+      margin-bottom: 1.5rem;
+    }
+    .cta-urgency {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(255, 68, 68, 0.1);
+      border: 1px solid rgba(255, 68, 68, 0.3);
+      color: #ff6b6b;
+      padding: 0.5rem 1.5rem;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 2rem;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    /* ===== Footer ===== */
+    .footer {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 2rem;
+      border-top: 1px solid rgba(212, 175, 55, 0.1);
+      color: var(--text-muted);
+      font-size: 0.8rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    /* ===== Divider ===== */
+    .divider {
+      width: 80px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      margin: 0 auto;
+    }
+
+    /* ===== Responsive ===== */
+    @media (max-width: 768px) {
+      .nav { padding: 0.8rem 1.5rem; }
+      .nav-cta { padding: 0.5rem 1.2rem; font-size: 0.75rem; }
+      .hero { padding: 7rem 1.5rem 3rem; }
+      .section { padding: 4rem 1.5rem; }
+      .countdown { gap: 0.8rem; }
+      .countdown-box { min-width: 70px; padding: 0.8rem 1rem; }
+      .countdown-box .num { font-size: 1.8rem; }
+      .speakers-grid { grid-template-columns: 1fr; }
+      .day-cards { grid-template-columns: 1fr; }
+      .cta-btn { padding: 1rem 2rem; font-size: 0.9rem; }
+      .target-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ===== Scroll Animations ===== */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+<!-- Ambient Background -->
+<div class="ambient">
+  <div class="orb o1"></div>
+  <div class="orb o2"></div>
+  <div class="orb o3"></div>
+</div>
+
+<!-- Particles -->
+<div class="particles" id="particles"></div>
+
+<!-- Navigation -->
+<nav class="nav">
+  <img src="logo.png" alt="Beyond Money Minds">
+  <a href="register.html" class="nav-cta">Regjistrohu Falas</a>
+</nav>
+
+<!-- ===== HERO ===== -->
+<header class="hero">
+  <div class="hero-badge">
+    <span>🔴</span> Live & Falas | Vendet Janë të Kufizuara
+  </div>
+
+  <p class="hero-date">📅 10 & 11 PRILL 2026 &nbsp;|&nbsp; 🕖 19:00 - 21:00 &nbsp;|&nbsp; 💻 ZOOM</p>
+
+  <h1>THE NEXT LEVEL</h1>
+
+  <p class="hero-desc">
+    Një seminar <strong>ONLINE FALAS</strong> që nuk ka lidhje me ato që ke parë deri tani.
+    Rreth 2 orë ku do të hyjmë thellë në mënyrën <strong>si lëviz tregu</strong>,
+    si funksionon <strong>Crypto & Forex</strong> në realitet, dhe si merren vendimet që krijojnë
+    <strong>të ardhura reale</strong>.
+  </p>
+
+  <!-- Countdown Timer -->
+  <div class="countdown" id="countdown">
+    <div class="countdown-box">
+      <div class="num" id="days">00</div>
+      <div class="label">Ditë</div>
+    </div>
+    <div class="countdown-box">
+      <div class="num" id="hours">00</div>
+      <div class="label">Orë</div>
+    </div>
+    <div class="countdown-box">
+      <div class="num" id="minutes">00</div>
+      <div class="label">Minuta</div>
+    </div>
+    <div class="countdown-box">
+      <div class="num" id="seconds">00</div>
+      <div class="label">Sekonda</div>
+    </div>
+  </div>
+
+  <a href="register.html" class="cta-btn">
+    🎯 Regjistrohu Falas Tani
+  </a>
+  <span class="cta-sub"><span class="free">100% Falas</span> | Vetëm për ata që duan të ndryshojnë</span>
+</header>
+
+<!-- ===== SPEAKERS ===== -->
+<section class="section fade-up">
+  <div style="text-align:center;">
+    <span class="section-tag">Folësit</span>
+    <h2 class="section-title" style="text-align:center;">Mëso Nga Ekspertët Që E Kanë Bërë Tashmë</h2>
+    <p class="section-subtitle" style="margin:0 auto; text-align:center;">
+      Tre profesionistë që kanë ndërtuar karrierë dhe pasuri prej vitesh në tregjet financiare.
+      Tani ndajnë sekretet me ty.
+    </p>
+  </div>
+
+  <div class="speakers-grid">
+    <!-- JORI -->
+    <div class="speaker-card">
+      <img src="jori.jpg" alt="Jori DeFi" class="speaker-img">
+      <span class="speaker-tag">Crypto Expert</span>
+      <h3 class="speaker-name">Jori DeFi</h3>
+      <p class="speaker-role">Crypto & Trading Expert</p>
+      <p class="speaker-bio">
+        Ajo hyri në botën e kriptos në 2019 kur pak shqiptarë e dinin çfarë ishte Bitcoin, dhe nuk u ndal derisa bëri milionin e parë.
+        Me 6+ vite eksperiencë të drejtpërdrejtë në tregjet kripto, Jori ka ndërtuar portofole, ka bërë trade live, 
+        dhe tani ka një mision: <strong>t'u mësojë çdo shqiptari si ta përdorë crypto-n për liri financiare</strong>.
+      </p>
+      <a href="https://www.instagram.com/jori_defi" target="_blank" class="speaker-ig">
+        📸 @jori_defi
+      </a>
+    </div>
+
+    <!-- MARSID -->
+    <div class="speaker-card">
+      <img src="marsid.jpg" alt="Marsid Hila" class="speaker-img">
+      <span class="speaker-tag">Forex Expert</span>
+      <h3 class="speaker-name">Marsid Hila</h3>
+      <p class="speaker-role">Forex Trader & Mentor</p>
+      <p class="speaker-bio">
+        Me <strong>mbi 10 vite në tregjet financiare</strong>, Marsid e njeh Forex-in si pak kush tjetër.
+        Ka tregtuar çdo lloj tregu, nga valutat tek indekset, duke ndërtuar strategji që japin rezultate reale.
+        Ai nuk flet me teori, flet me grafiqe, numra, dhe fitime të vërtetua. <strong>Nëse do të mësosh Forex-in si duhet, 
+        Marsid është ai që ta tregon rrugën</strong>.
+      </p>
+      <a href="https://www.instagram.com/marsid.hila" target="_blank" class="speaker-ig">
+        📸 @marsid.hila
+      </a>
+    </div>
+
+    <!-- ELENA -->
+    <div class="speaker-card">
+      <img src="elena.jpg" alt="Elena Demce" class="speaker-img">
+      <span class="speaker-tag">Network Marketing Expert</span>
+      <h3 class="speaker-name">Elena Demce</h3>
+      <p class="speaker-role">Business Mindset & Network Marketing</p>
+      <p class="speaker-bio">
+        Elena nuk pret që mundësia të vijë, ajo e krijon vetë. Me <strong>4 vite në network marketing</strong>
+        dhe mendësinë e një sipërmarrëseje, ajo ka ndërtuar një biznes që funksionon 24/7.
+        Specialiteti i saj? <strong>Të transformojë mënyrën si mendon për paratë</strong>, sepse pa mendësinë e duhur,
+        asnjë strategji nuk funksionon.
+      </p>
+      <a href="https://www.instagram.com/iamelenademce" target="_blank" class="speaker-ig">
+        📸 @iamelenademce
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SCHEDULE ===== -->
+<section class="section fade-up">
+  <div style="text-align:center;">
+    <span class="section-tag">Programi</span>
+    <h2 class="section-title" style="text-align:center;">Çfarë Do Të Mësosh Në 2 Ditë</h2>
+    <p class="section-subtitle" style="margin:0 auto; text-align:center;">
+      Dy ditë intensive ku do kuptosh gjëra që njerëzit i paguajnë me mijëra euro. Ti i merr FALAS.
+    </p>
+  </div>
+
+  <div class="day-cards">
+    <!-- DAY 1 -->
+    <div class="day-card">
+      <span class="day-label">📅 Dita 1 | 10 Prill</span>
+      <h3 class="day-title">Tregjet Financiare: Si Lëviz Paraja Realisht</h3>
+      <p class="day-time">🕖 19:00 - 21:00 (Ora Shqipërisë)</p>
+      <ul class="day-topics">
+        <li>Si funksionon tregu i Crypto-s dhe pse 2026 është viti i mundësive</li>
+        <li>Forex: Si tregtojnë profesionistët valutat çdo ditë</li>
+        <li>Gabimi #1 që bëjnë fillestarët (dhe si ta shmangësh)</li>
+        <li>Ku janë mundësitë reale sot, jo hype, por fakte</li>
+        <li>Demo Live: Si duket një tregti nga fillimi deri në fund</li>
+      </ul>
+      <div class="day-speakers">
+        <span class="day-speaker-chip">
+          <img src="jori.jpg" alt="Jori"> Jori DeFi
+        </span>
+        <span class="day-speaker-chip">
+          <img src="marsid.jpg" alt="Marsid"> Marsid Hila
+        </span>
+      </div>
+    </div>
+
+    <!-- DAY 2 -->
+    <div class="day-card">
+      <span class="day-label">📅 Dita 2 | 11 Prill</span>
+      <h3 class="day-title">Mendësia & Ndërtimi i Pasurisë</h3>
+      <p class="day-time">🕖 19:00 - 21:00 (Ora Shqipërisë)</p>
+      <ul class="day-topics">
+        <li>Pse 95% e njerëzve dështojnë dhe çfarë bëjnë 5% ndryshe</li>
+        <li>Network marketing si mundësi: Si ta ndërtosh biznesin pa kapital</li>
+        <li>Si të krijosh të ardhura të shumëfishta (multiple income streams)</li>
+        <li>Mendësia fituese: Si mendojnë ata që fitojnë para çdo ditë</li>
+        <li>Hapat e Ardhshëm: Si mund të nisësh të investosh VETË që nesër</li>
+      </ul>
+      <div class="day-speakers">
+        <span class="day-speaker-chip">
+          <img src="elena.jpg" alt="Elena"> Elena Demce
+        </span>
+        <span class="day-speaker-chip">
+          <img src="jori.jpg" alt="Jori"> Jori DeFi
+        </span>
+        <span class="day-speaker-chip">
+          <img src="marsid.jpg" alt="Marsid"> Marsid Hila
+        </span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== WHAT YOU'LL LEARN ===== -->
+<section class="section fade-up">
+  <span class="section-tag">Çfarë Do Mësosh</span>
+  <h2 class="section-title">Në 2 Ditë Do Kuptosh Çfarë Të Tjerët Mësojnë Me Vite</h2>
+
+  <div class="benefits-list">
+    <div class="benefit-item">
+      <div class="benefit-icon">📊</div>
+      <p class="benefit-text"><strong>Si lëvizin tregjet financiare</strong> dhe pse ata që i kuptojnë ndërtojnë pasuri, ndërsa të tjerët humbasin</p>
+    </div>
+    <div class="benefit-item">
+      <div class="benefit-icon">₿</div>
+      <p class="benefit-text"><strong>Si funksionon Crypto në realitet</strong>, jo fjala boshe nga TikTok, por strategjitë që përdorin investitorët e vërtetë</p>
+    </div>
+    <div class="benefit-item">
+      <div class="benefit-icon">💱</div>
+      <p class="benefit-text"><strong>Si të fillosh tregtimin në Forex</strong>: valutat, strategjitë bazë, dhe si ta kthesh në të ardhura të vazhdueshme</p>
+    </div>
+    <div class="benefit-item">
+      <div class="benefit-icon">🧠</div>
+      <p class="benefit-text"><strong>Mendësia që ndan të pasurit nga të tjerët</strong>: pse disa njerëz fitojnë para edhe kur tregu bjen</p>
+    </div>
+    <div class="benefit-item">
+      <div class="benefit-icon">🚀</div>
+      <p class="benefit-text"><strong>Si të ndërtosh të ardhura pa punëdhënës</strong> duke përdorur tregjet, network marketing, dhe teknologjinë</p>
+    </div>
+    <div class="benefit-item">
+      <div class="benefit-icon">🎯</div>
+      <p class="benefit-text"><strong>Hapat e parë konkretë</strong>: pas këtij trajnimi do jesh i qartë se si mund të nisësh të investosh VETË</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== QUOTE ===== -->
+<section class="section fade-up" style="padding-top:0;">
+  <div class="quote-block">
+    <p class="quote-text">
+      Nëse e ke ndjere që po jep shumë por prape nuk po shikon rezultatet që meriton...
+      ky është ai momenti ku ose e kap dhe hap një drejtim tjetër, ose vazhdon si je tani.
+    </p>
+  </div>
+</section>
+
+<!-- ===== WHO IS THIS FOR ===== -->
+<section class="section fade-up">
+  <div style="text-align:center;">
+    <span class="section-tag">Për Kë Është</span>
+    <h2 class="section-title" style="text-align:center;">Ky Seminar Është Për Ty Nëse...</h2>
+  </div>
+
+  <div class="target-grid">
+    <div class="target-item">
+      <div class="target-emoji">🎓</div>
+      <h4>Je student</h4>
+      <p>Dëshiron të mësosh si të fitosh para nga tregjet financiare, pa pritur diplomën</p>
+    </div>
+    <div class="target-item">
+      <div class="target-emoji">💼</div>
+      <h4>Punon 9 deri 5</h4>
+      <p>Ke një punë por nuk je i kënaqur me rrogën dhe dëshiron të ardhura shtesë</p>
+    </div>
+    <div class="target-item">
+      <div class="target-emoji">🔰</div>
+      <h4>Je fillëstar total</h4>
+      <p>Nuk di asgjë për Crypto, Forex apo investim, por dëshiron ta nisësh si duhet</p>
+    </div>
+    <div class="target-item">
+      <div class="target-emoji">📈</div>
+      <h4>Ke provuar por nuk ka funksionuar</h4>
+      <p>Ke humbur para ose ke ndjere që s'po lëviz? Do kuptosh pse dhe si ta ndreqësh</p>
+    </div>
+    <div class="target-item">
+      <div class="target-emoji">🌍</div>
+      <h4>Dëshiron liri financiare</h4>
+      <p>Dëshiron të punosh nga kudo në botë, pa kufij, pa orar, pa shefi</p>
+    </div>
+    <div class="target-item">
+      <div class="target-emoji">👨‍👩‍👧</div>
+      <h4>Familjar që dëshiron më shumë</h4>
+      <p>Dëshiron ta ndryshosh jetën për veten dhe për familjen tënde</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== WHY JOIN ===== -->
+<section class="section fade-up">
+  <div style="text-align:center;">
+    <span class="section-tag">Pse Duhet Të Bashkohesh</span>
+    <h2 class="section-title" style="text-align:center;">Pse Tani Dhe Jo "Një Ditë Tjetër"</h2>
+  </div>
+
+  <div class="why-grid">
+    <div class="why-card">
+      <div class="why-icon">⏰</div>
+      <h4>2026 është viti i mundësive</h4>
+      <p>Tregjet financiare po ndryshojnë. Ata që veprojnë sot kanë avantazhin. Ata që presin do të mësojnë nga të tjerët si mbetën pas.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">💡</div>
+      <h4>Nga "nuk di si" në "po e bëj" brenda 2 ditësh</h4>
+      <p>Nuk do të dalësh me motivim të zbrazët. Do dalësh me një plan konkret, mjete reale, dhe njohuritë saktësisht çfarë të bësh.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">🎯</div>
+      <h4>Ky seminar nuk do përsëritet kështu</h4>
+      <p>Jori, Marsid dhe Elena bashkë: 3 perspektiva, 3 ekspertiza, 1 skenë. Një mundësi e rrallë për të krijuar drejtim të ri.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">👨‍👩‍👧</div>
+      <h4>Ky vendim ndikon tek e gjithë jeta jote</h4>
+      <p>Kur ti ke liri financiare, familja jote e ndjen ndryshimin. Liri financiare nuk është egoizëm, është dhurata më e madhe.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FAQ ===== -->
+<section class="section fade-up">
+  <div style="text-align:center;">
+    <span class="section-tag">Pyetje të Shpeshta</span>
+    <h2 class="section-title" style="text-align:center;">Pyetjet Më Të Zakonshme</h2>
+  </div>
+
+  <div class="faq-list">
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">A është vërtetë falas?</div>
+      <div class="faq-a"><p>Po, 100% falas. Gjithçka që duhet të bësh është të regjistrohesh në Zoom dhe të jesh prezent në orarin e caktuar. Nuk ka tarifa të fshehura.</p></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">A duhet të kem eksperiencë me tregjet financiare?</div>
+      <div class="faq-a"><p>Jo. Ky seminar është ndërtuar pikërisht për ata që fillojnë nga zeroja. Do ta shpjegojmë gjithçka hap pas hapi, pa fjala të ndërlikuara.</p></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Sa zgjat çdo ditë?</div>
+      <div class="faq-a"><p>Çdo ditë zgjat rreth 2 orë, nga ora 19:00 deri në 21:00 (ora Shqipërisë). Do jemi live në Zoom.</p></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">A mund ta shoh edhe pas nëse e humb?</div>
+      <div class="faq-a"><p>Po, seminari do regjistrohet dhe do postohet në kanalin tonë falas në Whop. Megjithatë, duke qenë live ke mundësinë të bësh pyetje dhe të marrësh përgjigje në kohë reale, prandaj rekomandojmë të jesh prezent!</p></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Si regjistrohem?</div>
+      <div class="faq-a"><p>Mjafton të klikosh butonin "Regjistrohu Falas" në këtë faqe. Do ridrejtoheni në faqen e Zoom ku plotësoni të dhënat tuaja. ⚠️ Vendet janë të kufizuara!</p></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">A ka kufizim moshe?</div>
+      <div class="faq-a"><p>Jo, mund të merrni pjesë pavarësisht moshës. Kushdo që dëshiron të mësojë për tregjet financiare është i mirëpritur!</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FINAL CTA ===== -->
+<section class="cta-section fade-up">
+  <div class="cta-urgency">⚠️ Vendet Janë Të Kufizuara | Regjistrohu Para Se Të Mbyllen!</div>
+  <h2 class="section-title" style="text-align:center;">Mos Prit "Një Ditë Tjetër".<br>Ajo Ditë Është SOT.</h2>
+  <p style="color:var(--text-muted); max-width:550px; margin:0 auto 2.5rem; font-size:1.1rem;">
+    Regjistrohu falas, hyj live në 10 & 11 Prill, dhe fillo ta ndryshosh mënyrën si mendon për paratë.
+  </p>
+  <a href="register.html" class="cta-btn">
+    🚀 PO, DËSHIROJ LIRINË TIME
+  </a>
+  <span class="cta-sub">Regjistrimi mbyllet shpejt. <span class="free">Siguro vendin tënd tani</span></span>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <img src="logo.png" alt="Beyond Money Minds" style="height:40px; margin-bottom:1rem; opacity:0.7;">
+  <p>Powered by Beyond Money Minds | © 2026</p>
+</footer>
+
+<!-- ===== JavaScript ===== -->
+<script>
+  // Countdown Timer — target: April 10, 2026, 19:00 Albanian Time (CET = UTC+2)
+  const targetDate = new Date('2026-04-10T17:00:00Z'); // 19:00 CET = 17:00 UTC
+
+  function updateCountdown() {
+    const now = new Date();
+    const diff = targetDate - now;
+
+    if (diff <= 0) {
+      document.getElementById('days').textContent = '🔴';
+      document.getElementById('hours').textContent = 'LIVE';
+      document.getElementById('minutes').textContent = 'NOW';
+      document.getElementById('seconds').textContent = '🔴';
+      return;
+    }
+
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+    document.getElementById('days').textContent = String(days).padStart(2, '0');
+    document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+    document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+    document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+  }
+
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+
+  // Particles
+  const particlesContainer = document.getElementById('particles');
+  for (let i = 0; i < 30; i++) {
+    const p = document.createElement('div');
+    p.classList.add('particle');
+    p.style.left = Math.random() * 100 + '%';
+    p.style.animationDelay = Math.random() * 8 + 's';
+    p.style.animationDuration = (6 + Math.random() * 6) + 's';
+    particlesContainer.appendChild(p);
+  }
+
+  // Scroll Animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>

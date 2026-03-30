@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="sq">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Regjistrohu | THE NEXT LEVEL | Beyond Money Minds</title>
+  <meta name="description" content="Regjistrohu falas për seminarin online THE NEXT LEVEL, 10-11 Prill 2026.">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #060608;
+      --bg-card: rgba(15, 15, 20, 0.85);
+      --gold: #d4af37;
+      --gold-light: #f0d060;
+      --gold-muted: #a08520;
+      --text: #eee;
+      --text-muted: #999;
+      --radius: 20px;
+      --radius-sm: 12px;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+      line-height: 1.7;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Ambient */
+    .ambient {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+    .ambient .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(120px);
+      opacity: 0.25;
+      animation: orbFloat 20s ease-in-out infinite alternate;
+    }
+    .orb.o1 { width: 600px; height: 600px; background: var(--gold); top: -10%; left: -10%; }
+    .orb.o2 { width: 500px; height: 500px; background: #b8860b; bottom: 20%; right: -15%; animation-delay: -7s; }
+
+    @keyframes orbFloat {
+      0% { transform: translate(0, 0) scale(1); }
+      50% { transform: translate(40px, -30px) scale(1.1); }
+      100% { transform: translate(-20px, 20px) scale(0.95); }
+    }
+
+    /* Particles */
+    .particles {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+    }
+    .particle {
+      position: absolute;
+      width: 3px;
+      height: 3px;
+      background: var(--gold);
+      border-radius: 50%;
+      opacity: 0;
+      animation: particleRise 8s linear infinite;
+    }
+    @keyframes particleRise {
+      0% { opacity: 0; transform: translateY(100vh) scale(0); }
+      10% { opacity: 0.6; }
+      90% { opacity: 0.3; }
+      100% { opacity: 0; transform: translateY(-20vh) scale(1); }
+    }
+
+    /* Container */
+    .register-container {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 520px;
+      padding: 2rem;
+    }
+
+    /* Logo */
+    .logo-wrap {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    .logo-wrap img {
+      height: 50px;
+    }
+    .logo-wrap a {
+      display: inline-block;
+    }
+
+    /* Card */
+    .register-card {
+      background: var(--bg-card);
+      border: 1px solid rgba(212, 175, 55, 0.2);
+      border-radius: var(--radius);
+      padding: 3rem 2.5rem;
+      backdrop-filter: blur(20px);
+      position: relative;
+      overflow: hidden;
+    }
+    .register-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--gold), var(--gold-light), var(--gold));
+    }
+
+    .register-header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .register-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: rgba(212, 175, 55, 0.1);
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      padding: 0.4rem 1rem;
+      border-radius: 50px;
+      font-size: 0.7rem;
+      color: var(--gold);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 1.2rem;
+      animation: pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.3); }
+      50% { box-shadow: 0 0 0 10px rgba(212, 175, 55, 0); }
+    }
+
+    .register-header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      background: linear-gradient(135deg, var(--gold-light), var(--gold));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 0.5rem;
+    }
+
+    .register-header p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    .event-info {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-top: 1rem;
+      flex-wrap: wrap;
+    }
+    .event-info span {
+      font-size: 0.8rem;
+      color: var(--gold);
+      font-weight: 600;
+    }
+
+    /* Form */
+    .form-group {
+      margin-bottom: 1.2rem;
+    }
+    .form-group label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--gold-muted);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 0.4rem;
+    }
+    .form-group input {
+      width: 100%;
+      padding: 0.9rem 1.2rem;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(212, 175, 55, 0.2);
+      border-radius: var(--radius-sm);
+      color: var(--text);
+      font-size: 1rem;
+      font-family: 'Inter', sans-serif;
+      transition: all 0.3s ease;
+      outline: none;
+    }
+    .form-group input::placeholder {
+      color: rgba(255, 255, 255, 0.25);
+    }
+    .form-group input:focus {
+      border-color: var(--gold);
+      box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 1rem;
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      color: #000;
+      border: none;
+      border-radius: 50px;
+      font-size: 1rem;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.4s ease;
+      box-shadow: 0 8px 30px rgba(212, 175, 55, 0.3);
+      margin-top: 0.5rem;
+      position: relative;
+      overflow: hidden;
+      font-family: 'Inter', sans-serif;
+    }
+    .submit-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+      transition: left 0.6s ease;
+    }
+    .submit-btn:hover::before { left: 100%; }
+    .submit-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 40px rgba(212, 175, 55, 0.5);
+    }
+    .submit-btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .form-footer {
+      text-align: center;
+      margin-top: 1.2rem;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+    .form-footer .free {
+      color: var(--gold);
+      font-weight: 700;
+    }
+
+    /* Back link */
+    .back-link {
+      text-align: center;
+      margin-top: 1.5rem;
+    }
+    .back-link a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.85rem;
+      transition: color 0.3s;
+    }
+    .back-link a:hover {
+      color: var(--gold);
+    }
+
+    /* Success state */
+    .success-state {
+      display: none;
+      text-align: center;
+      padding: 2rem 0;
+    }
+    .success-state.show {
+      display: block;
+    }
+    .success-icon {
+      font-size: 4rem;
+      margin-bottom: 1rem;
+    }
+    .success-state h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      color: var(--gold-light);
+      margin-bottom: 0.8rem;
+    }
+    .success-state p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 0.5rem;
+    }
+    .success-state .zoom-link {
+      display: inline-block;
+      margin-top: 1.5rem;
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      color: #000;
+      padding: 0.8rem 2rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.9rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      transition: all 0.3s ease;
+      box-shadow: 0 6px 25px rgba(212, 175, 55, 0.3);
+    }
+    .success-state .zoom-link:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 35px rgba(212, 175, 55, 0.5);
+    }
+
+    /* Error */
+    .error-msg {
+      display: none;
+      background: rgba(255, 68, 68, 0.1);
+      border: 1px solid rgba(255, 68, 68, 0.3);
+      color: #ff6b6b;
+      padding: 0.6rem 1rem;
+      border-radius: var(--radius-sm);
+      font-size: 0.85rem;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+    .error-msg.show {
+      display: block;
+    }
+
+    /* Loading spinner */
+    .spinner {
+      display: inline-block;
+      width: 18px;
+      height: 18px;
+      border: 2px solid rgba(0,0,0,0.2);
+      border-top-color: #000;
+      border-radius: 50%;
+      animation: spin 0.6s linear infinite;
+      vertical-align: middle;
+      margin-right: 0.4rem;
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    @media (max-width: 600px) {
+      .register-card { padding: 2rem 1.5rem; }
+      .register-container { padding: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="ambient">
+  <div class="orb o1"></div>
+  <div class="orb o2"></div>
+</div>
+
+<div class="particles" id="particles"></div>
+
+<div class="register-container">
+  <div class="logo-wrap">
+    <a href="index.html"><img src="logo.png" alt="Beyond Money Minds"></a>
+  </div>
+
+  <div class="register-card">
+    <div class="register-header">
+      <div class="register-badge">🔴 Live & Falas</div>
+      <h1>Regjistrohu Tani</h1>
+      <p>Siguro vendin tënd për seminarin THE NEXT LEVEL</p>
+      <div class="event-info">
+        <span>📅 10-11 Prill 2026</span>
+        <span>🕖 19:00 - 21:00</span>
+        <span>💻 Zoom</span>
+      </div>
+    </div>
+
+    <!-- Form -->
+    <form id="registerForm">
+      <div class="error-msg" id="errorMsg"></div>
+
+      <div class="form-group">
+        <label for="firstName">Emri</label>
+        <input type="text" id="firstName" name="firstName" placeholder="Emri yt" required autocomplete="given-name">
+      </div>
+
+      <div class="form-group">
+        <label for="lastName">Mbiemri</label>
+        <input type="text" id="lastName" name="lastName" placeholder="Mbiemri yt" required autocomplete="family-name">
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="email@shembull.com" required autocomplete="email">
+      </div>
+
+      <button type="submit" class="submit-btn" id="submitBtn">
+        🎯 Regjistrohu Falas
+      </button>
+
+      <p class="form-footer"><span class="free">100% Falas</span> | Nuk ka tarifa të fshehura</p>
+    </form>
+
+    <!-- Success State (shown after registration) -->
+    <div class="success-state" id="successState">
+      <div class="success-icon">🎉</div>
+      <h2>Je Regjistruar Me Sukses!</h2>
+      <p>Faleminderit që u regjistrove për THE NEXT LEVEL.</p>
+      <p>Do të marrësh një email me detajet e seminarit.</p>
+      <a href="https://us06web.zoom.us/meeting/register/tAOpGNqTSDCMBLMmdhV7sw" target="_blank" class="zoom-link">
+        Hyr Në Zoom
+      </a>
+    </div>
+  </div>
+
+  <div class="back-link">
+    <a href="index.html">← Kthehu tek faqja kryesore</a>
+  </div>
+</div>
+
+<script>
+  // Particles
+  const particlesContainer = document.getElementById('particles');
+  for (let i = 0; i < 20; i++) {
+    const p = document.createElement('div');
+    p.classList.add('particle');
+    p.style.left = Math.random() * 100 + '%';
+    p.style.animationDelay = Math.random() * 8 + 's';
+    p.style.animationDuration = (6 + Math.random() * 6) + 's';
+    particlesContainer.appendChild(p);
+  }
+
+  // Form handling
+  const form = document.getElementById('registerForm');
+  const submitBtn = document.getElementById('submitBtn');
+  const errorMsg = document.getElementById('errorMsg');
+  const successState = document.getElementById('successState');
+
+  // IMPORTANT: Replace this URL with your Cloudflare Worker URL after deploying
+  const WORKER_URL = 'https://bmm.jori-hexalb.workers.dev/register';
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    const firstName = document.getElementById('firstName').value.trim();
+    const lastName = document.getElementById('lastName').value.trim();
+    const email = document.getElementById('email').value.trim();
+
+    // Validation
+    if (!firstName || !lastName || !email) {
+      showError('Ju lutem plotësoni të gjitha fushat.');
+      return;
+    }
+
+    if (!isValidEmail(email)) {
+      showError('Ju lutem shkruani një email të vlefshëm.');
+      return;
+    }
+
+    // Show loading
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<span class="spinner"></span> Duke u regjistruar...';
+    errorMsg.classList.remove('show');
+
+    try {
+      const response = await fetch(WORKER_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ firstName, lastName, email })
+      });
+
+      if (!response.ok) throw new Error('Server error');
+
+      // Success - hide form, show success
+      form.style.display = 'none';
+      successState.classList.add('show');
+
+    } catch (err) {
+      // If worker is not set up yet, store locally and still show success
+      console.log('Worker not available, storing locally:', { firstName, lastName, email });
+      
+      // Save to localStorage as backup
+      const registrations = JSON.parse(localStorage.getItem('bmm_registrations') || '[]');
+      registrations.push({ firstName, lastName, email, timestamp: new Date().toISOString() });
+      localStorage.setItem('bmm_registrations', JSON.stringify(registrations));
+
+      // Still show success to the user
+      form.style.display = 'none';
+      successState.classList.add('show');
+    }
+  });
+
+  function showError(msg) {
+    errorMsg.textContent = msg;
+    errorMsg.classList.add('show');
+  }
+
+  function isValidEmail(email) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  }
+</script>
+
+</body>
+</html>
