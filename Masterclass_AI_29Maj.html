@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="sq">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Masterclass — 29 Maj 2025 | Beyond Money Minds</title>
+<style>
+:root {
+  --bg: #050508;
+  --bg-card: rgba(18, 15, 10, 0.9);
+  --gold: #c8a020;
+  --gold-light: #e8c840;
+  --gold-muted: #8a6a15;
+  --cream: #f0e6d0;
+  --text: #d4cfc5;
+  --text-muted: #8a8478;
+  --red-soft: #c0392b;
+  --radius: 14px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);font-family:-apple-system,'system-ui','Segoe UI',sans-serif}
+.ambient{position:fixed;inset:0;z-index:0;pointer-events:none}
+.ambient .orb{position:absolute;border-radius:50%;filter:blur(160px);opacity:0.12}
+.ambient .o1{width:700px;height:700px;background:var(--gold);top:-20%;left:-15%}
+.ambient .o2{width:550px;height:550px;background:#8b6914;bottom:-10%;right:-10%}
+.ambient .o3{width:400px;height:400px;background:var(--gold-muted);top:40%;left:60%}
+
+/* Navigation */
+.nav-bar{position:fixed;bottom:0;left:0;right:0;z-index:100;display:flex;justify-content:center;align-items:center;gap:12px;padding:18px;background:linear-gradient(to top,rgba(5,5,8,0.95),transparent)}
+.nav-dot{width:10px;height:10px;border-radius:50%;border:1px solid var(--gold-muted);background:transparent;transition:all 0.3s;cursor:pointer}
+.nav-dot.active{background:var(--gold);border-color:var(--gold);box-shadow:0 0 10px var(--gold-muted)}
+.nav-arrow{background:rgba(200,160,32,0.1);border:1px solid var(--gold-muted);color:var(--gold-light);width:36px;height:36px;border-radius:50%;cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center;transition:all 0.2s}
+.nav-arrow:hover{background:rgba(200,160,32,0.2);border-color:var(--gold)}
+.slide-num{font-family:'SF Mono','Menlo',monospace;font-size:0.65rem;color:var(--text-muted);min-width:50px;text-align:center}
+.progress-bar{position:fixed;top:0;left:0;height:3px;background:var(--gold);z-index:200;transition:width 0.4s ease}
+
+/* Slides */
+.deck{position:relative;z-index:1;width:100%;height:100%}
+.slide{display:none;flex-direction:column;justify-content:center;align-items:center;width:100%;height:100%;padding:60px 80px;text-align:center;position:relative}
+.slide.active{display:flex;animation:fadeIn 0.5s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+
+.tag{display:inline-block;padding:6px 22px;border:1px solid var(--gold-muted);border-radius:50px;font-size:0.6rem;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:20px;font-family:'SF Mono','Menlo',monospace}
+.slide h1{font-family:'Georgia','Times New Roman',serif;font-size:clamp(2rem,4.5vw,3.8rem);font-weight:700;background:linear-gradient(135deg,var(--gold-light),var(--gold),#fff2cc);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1.15;margin-bottom:18px}
+.slide h2{font-family:'Georgia','Times New Roman',serif;font-size:clamp(1.5rem,3.2vw,2.6rem);color:var(--gold-light);margin-bottom:14px;line-height:1.2}
+.slide h3{font-size:1.15rem;color:var(--gold);margin-bottom:10px;letter-spacing:1px;font-family:'SF Mono','Menlo',monospace}
+.slide p{font-size:1.05rem;color:var(--text-muted);max-width:780px;line-height:1.75}
+.slide p strong{color:var(--cream);font-weight:600}
+.slide p em{color:var(--gold-light);font-style:normal}
+
+/* Cards */
+.card-grid{display:grid;gap:18px;max-width:950px;width:100%;margin-top:20px}
+.card-grid.cols2{grid-template-columns:1fr 1fr}
+.card-grid.cols3{grid-template-columns:1fr 1fr 1fr}
+@media(max-width:800px){.card-grid.cols2,.card-grid.cols3{grid-template-columns:1fr}}
+
+.card{background:var(--bg-card);border:1px solid rgba(200,160,32,0.12);border-radius:var(--radius);padding:28px 24px;text-align:left;transition:all 0.3s}
+.card:hover{border-color:rgba(200,160,32,0.3)}
+.card .icon{font-size:1.8rem;margin-bottom:12px}
+.card h4{color:var(--cream);font-family:'Georgia',serif;font-size:1.05rem;margin-bottom:8px}
+.card p{font-size:0.9rem;color:var(--text-muted);line-height:1.6}
+
+/* Big stat */
+.big-stat{font-family:'Georgia',serif;font-size:clamp(3rem,7vw,5rem);font-weight:700;color:var(--gold-light);line-height:1}
+.big-stat-label{font-size:0.8rem;color:var(--text-muted);margin-top:4px;letter-spacing:2px;text-transform:uppercase}
+
+/* Bullet list */
+.bullets{list-style:none;text-align:left;max-width:800px;width:100%;margin:16px auto 0}
+.bullets li{padding:11px 0;border-bottom:1px solid rgba(255,255,255,0.04);font-size:1rem;color:var(--text);display:flex;align-items:flex-start;gap:12px}
+.bullets li:last-child{border:none}
+.bullets li::before{content:'';min-width:6px;height:6px;background:var(--gold);border-radius:50%;margin-top:8px;flex-shrink:0}
+
+/* Quote */
+.quote{border-left:3px solid var(--gold);padding-left:24px;text-align:left;max-width:700px;margin:16px 0}
+.quote p{font-family:'Georgia',serif;font-size:1.3rem;color:var(--cream);line-height:1.5}
+.quote .attrib{font-size:0.75rem;color:var(--text-muted);margin-top:8px;letter-spacing:1px}
+
+/* Two column */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:40px;max-width:960px;width:100%;margin-top:20px;text-align:left}
+@media(max-width:800px){.two-col{grid-template-columns:1fr;gap:20px}}
+
+/* Before/After */
+.vs-card{border-radius:var(--radius);padding:30px 24px;text-align:center}
+.vs-card.before{background:rgba(192,57,43,0.08);border:1px solid rgba(192,57,43,0.2)}
+.vs-card.after{background:rgba(200,160,32,0.06);border:1px solid rgba(200,160,32,0.2)}
+.vs-card h4{font-size:1.1rem;margin-bottom:14px;font-family:'Georgia',serif}
+.vs-card.before h4{color:#c0392b}
+.vs-card.after h4{color:var(--gold-light)}
+.vs-card p{font-size:0.9rem;line-height:1.6}
+
+/* Offer card */
+.offer-card{background:linear-gradient(135deg,rgba(200,160,32,0.08),rgba(200,160,32,0.02));border:1px solid rgba(200,160,32,0.25);border-radius:var(--radius);padding:34px 28px;max-width:700px;width:100%;text-align:center;margin-top:20px}
+.offer-card .price{font-family:'Georgia',serif;font-size:3rem;color:var(--gold-light)}
+.offer-card .price-original{font-size:1.2rem;color:var(--text-muted);text-decoration:line-through;margin-left:8px}
+
+/* CTA button */
+.cta{display:inline-block;padding:14px 40px;background:linear-gradient(135deg,#d4af37,#c8a020);color:#050508;border:none;border-radius:50px;font-size:1.05rem;font-weight:700;cursor:pointer;letter-spacing:1px;transition:all 0.3s;text-decoration:none;font-family:'Georgia',serif;margin-top:16px}
+.cta:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(200,160,32,0.25)}
+
+/* Hero split slide */
+.hero-slide{display:flex;width:100%;height:100%;position:relative;animation:fadeIn 0.5s ease}
+.hero-slide:not(.active){display:none}
+.hero-left{flex:1;display:flex;flex-direction:column;justify-content:center;padding:60px 50px 60px 70px;text-align:left;z-index:2}
+.hero-left h1{font-family:'Georgia','Times New Roman',serif;font-size:clamp(2rem,4.5vw,3.8rem);font-weight:700;background:linear-gradient(135deg,var(--gold-light),var(--gold),#fff2cc);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1.15;margin-bottom:18px}
+.hero-right{flex:1;overflow:hidden;position:relative}
+.hero-right img{width:100%;height:100%;object-fit:cover;display:block}
+.hero-right::after{content:'';position:absolute;top:0;left:0;width:80px;height:100%;background:linear-gradient(to right,var(--bg),transparent);z-index:1}
+@media(max-width:800px){.hero-slide{flex-direction:column}.hero-left{padding:40px 30px;text-align:center}.hero-right{height:40vh}.hero-right::after{width:100%;height:60px;top:0;left:0;background:linear-gradient(to bottom,var(--bg),transparent)}}
+
+/* Pain emojis */
+.pain-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;max-width:850px;width:100%;margin-top:16px}
+@media(max-width:800px){.pain-grid{grid-template-columns:1fr 1fr}}
+.pain-item{text-align:center;padding:20px 12px;background:rgba(200,57,43,0.04);border:1px solid rgba(255,255,255,0.04);border-radius:var(--radius)}
+
+/* Pain Grid V2 — with images */
+.pain-grid-v2{display:grid;grid-template-columns:1fr 1fr;gap:18px;max-width:900px;width:100%;margin-top:12px}
+@media(max-width:800px){.pain-grid-v2{grid-template-columns:1fr}}
+.pain-card{background:var(--bg-card);border:1px solid rgba(200,160,32,0.08);border-radius:var(--radius);overflow:hidden;text-align:left;transition:all 0.3s}
+.pain-card:hover{border-color:rgba(200,57,43,0.3);transform:translateY(-2px)}
+.pain-card-body{padding:16px 18px}
+.pain-card-title{font-family:'Georgia',serif;font-size:1rem;color:var(--cream);margin-bottom:6px}
+.pain-card p{font-size:0.85rem;color:var(--text-muted);line-height:1.5}
+
+/* Image background strip — 4 images side by side, text overlaid */
+.img-strip{display:flex;gap:8px;width:100%;max-width:960px;margin-top:12px}
+.img-strip-card{flex:1;position:relative;border-radius:10px;overflow:hidden;aspect-ratio:4/5;min-width:0}
+.img-strip-card img{width:100%;height:100%;object-fit:cover;display:block}
+.img-strip-overlay{position:absolute;bottom:0;left:0;right:0;padding:14px 12px;background:linear-gradient(to top,rgba(5,5,8,0.95) 0%,rgba(5,5,8,0.7) 60%,transparent 100%);text-align:left}
+.strip-title{font-family:'Georgia',serif;font-size:0.95rem;color:var(--gold-light);margin-bottom:4px}
+.img-strip-overlay p{font-size:0.75rem;color:var(--text);line-height:1.4;margin:0}
+@media(max-width:800px){.img-strip{flex-wrap:wrap}.img-strip-card{flex:1 1 45%;aspect-ratio:3/4}}
+
+/* Pain Grid V2 — horizontal cards (image left, text right) */
+.pain-card-h{display:flex;align-items:flex-start;gap:14px;background:var(--bg-card);border:1px solid rgba(200,160,32,0.08);border-radius:var(--radius);padding:14px 16px;text-align:left;transition:all 0.3s}
+.pain-card-h:hover{border-color:rgba(200,57,43,0.3);transform:translateY(-2px)}
+.pain-card-h .pain-card-title{font-family:'Georgia',serif;font-size:0.95rem;color:var(--cream);margin-bottom:4px}
+.pain-card-h p{font-size:0.82rem;color:var(--text-muted);line-height:1.5;margin:0}
+.pain-item .big{font-size:2rem;margin-bottom:8px}
+.pain-item p{font-size:0.85rem;color:var(--text-muted);line-height:1.4}
+
+/* Industry card horizontal */
+.ind-card-h{display:flex;align-items:flex-start;gap:12px;background:var(--bg-card);border:1px solid rgba(200,160,32,0.1);border-radius:var(--radius);padding:14px 15px;text-align:left;transition:all 0.3s}
+.ind-card-h:hover{border-color:rgba(200,160,32,0.3)}
+.ind-card-h h4{color:var(--cream);font-family:'Georgia',serif;font-size:0.92rem;margin-bottom:4px}
+.ind-card-h p{font-size:0.78rem;color:var(--text-muted);line-height:1.5;margin:0}
+
+/* Horizontal card — image left, text right (slide 3 style) */
+.h-card{display:flex;align-items:flex-start;gap:16px;background:var(--bg-card);border:1px solid rgba(200,160,32,0.1);border-radius:var(--radius);padding:16px 18px;text-align:left;transition:all 0.3s}
+.h-card:hover{border-color:rgba(200,160,32,0.3)}
+.h-card img{width:120px;height:90px;object-fit:contain;background:#08080c;border-radius:6px;flex-shrink:0}
+.h-card h4{color:var(--cream);font-family:'Georgia',serif;font-size:0.92rem;margin-bottom:3px}
+.h-card p{font-size:0.8rem;color:var(--text-muted);line-height:1.5;margin:0}
+.h-card .icon{font-size:1.3rem;margin-bottom:2px}
+
+/* Workshop features */
+.workshop-features{display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:850px;width:100%;margin-top:20px;text-align:left}
+@media(max-width:800px){.workshop-features{grid-template-columns:1fr}}
+.feat{display:flex;align-items:flex-start;gap:14px;padding:18px;background:rgba(200,160,32,0.04);border:1px solid rgba(200,160,32,0.1);border-radius:var(--radius)}
+.feat .feat-icon{font-size:1.6rem;flex-shrink:0}
+.feat h4{color:var(--cream);font-family:'Georgia',serif;font-size:0.95rem;margin-bottom:4px}
+.feat p{font-size:0.82rem;color:var(--text-muted);line-height:1.5}
+
+/* Info bar */
+.info-bar{position:fixed;top:18px;left:0;right:0;z-index:150;display:flex;justify-content:center;gap:24px;font-size:0.7rem;color:var(--text-muted);font-family:'SF Mono','Menlo',monospace;letter-spacing:1px}
+.info-bar span{opacity:0.6}
+</style>
+</head>
+<body>
+
+<div class="ambient">
+  <div class="orb o1"></div>
+  <div class="orb o2"></div>
+  <div class="orb o3"></div>
+</div>
+
+<div class="progress-bar" id="progress"></div>
+
+<div class="info-bar">
+  <span>29 MAJ 2025</span>
+  <span>|</span>
+  <span>19:00</span>
+  <span>|</span>
+  <span>ZOOM</span>
+</div>
+
+<div class="deck" id="deck">
+
+<!-- SLIDE 1: Title -->
+<div class="hero-slide active">
+  <div class="hero-left">
+    <span class="tag">Masterclass Falas</span>
+    <h1>Inteligjenca Artificiale</h1>
+    <p style="font-size:1.2rem;color:var(--cream);margin-bottom:6px;">Si po ndryshon bota dhe si mund ta perdoresh per biznesin tend</p>
+    <p style="font-size:0.85rem;color:var(--text-muted);">29 Maj · 19:00 · Zoom</p>
+    <p style="font-size:0.75rem;color:var(--gold-muted);margin-top:8px;font-family:'SF Mono','Menlo',monospace;letter-spacing:1px">NGA BEYOND MONEY MINDS</p>
+  </div>
+  <div class="hero-right">
+    <img src="Masterclass_AI_29Maj_images/16_hero.jpg" alt="AI Masterclass">
+  </div>
+</div>
+
+<!-- SLIDE 2: Who Are We -->
+<div class="slide">
+  <span class="tag">Kush Jemi</span>
+  <h2>Folësit e Masterclass-it</h2>
+  <p style="margin-bottom:20px;">Dy eksperte qe do te te tregojne si AI mund te transformoje biznesin tend</p>
+  <div class="two-col">
+    <div class="h-card">
+      <img src="Masterclass_AI_29Maj_images/speaker_jori.jpg" alt="Jori DeFi" style="border-radius:50%;width:100px;height:100px;object-fit:cover;flex-shrink:0">
+      <div>
+        <h4>Jori DeFi <span style="font-size:0.6rem;color:var(--gold-muted);font-family:'SF Mono',monospace;letter-spacing:1px">CRYPTO LEAD</span></h4>
+        <p style="font-size:0.82rem;line-height:1.5">5+ vite ne tregjet digjitale. Ndertoi pasuri nga zero duke perdorur crypto, DeFi, dhe AI.</p>
+        <p style="font-size:0.65rem;color:var(--gold-muted);margin-top:4px;font-family:'SF Mono',monospace">📷 @jori_defi</p>
+      </div>
+    </div>
+    <div class="h-card">
+      <img src="Masterclass_AI_29Maj_images/speaker_elena.jpg" alt="Elena Demce" style="border-radius:50%;width:100px;height:100px;object-fit:cover;object-position:center 18%;flex-shrink:0">
+      <div>
+        <h4>Elena Demce <span style="font-size:0.6rem;color:var(--gold-muted);font-family:'SF Mono',monospace;letter-spacing:1px">BUSINESS MINDSET</span></h4>
+        <p style="font-size:0.82rem;line-height:1.5">5+ vite ne network-marketing dhe branding. Perdor AI per te ndertuar marka qe thyejne limitet e tregut shqiptar.</p>
+        <p style="font-size:0.65rem;color:var(--gold-muted);margin-top:4px;font-family:'SF Mono',monospace">📷 @iamelenademce</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 3: What is AI - Simple -->
+<div class="slide">
+  <span class="tag">Pjesa 1 · Filozofia e AI</span>
+  <h2>Cfare eshte Inteligjenca Artificiale?</h2>
+  <p style="font-size:1rem;color:var(--cream);margin-bottom:14px;">Nje asistent qe <strong>mendon, shkruan, kodon, dhe zgjidh probleme</strong> per ty. Nje punonjes qe nuk fle, nuk ankohet, dhe nuk kerkon rroge.</p>
+  <div class="card-grid cols2">
+    <div class="h-card">
+      <img src="Masterclass_AI_29Maj_images/12_speaks.jpg" alt="Flet si njeri">
+      <div>
+        <div class="icon" style="font-size:1.3rem;margin-bottom:2px">💬</div>
+        <h4>Flet si njeri</h4>
+        <p>ChatGPT, Claude, DeepSeek. I shpjegon gjerat sikur te flasesh me nje ekspert.</p>
+      </div>
+    </div>
+    <div class="h-card">
+      <img src="Masterclass_AI_29Maj_images/13_creates.jpg" alt="Krijon cdo gje">
+      <div>
+        <div class="icon" style="font-size:1.3rem;margin-bottom:2px">🎨</div>
+        <h4>Krijon cdo gje</h4>
+        <p>Imazhe, video, muzike, website, aplikacione. Nga zero, ne sekonda.</p>
+      </div>
+    </div>
+    <div class="h-card">
+      <img src="Masterclass_AI_29Maj_images/14_automates.jpg" alt="Automatizon pune">
+      <div>
+        <div class="icon" style="font-size:1.3rem;margin-bottom:2px">⚡</div>
+        <h4>Automatizon pune</h4>
+        <p>Dergon email, menaxhon kliente, perditeson rrjete sociale. Pa ty.</p>
+      </div>
+    </div>
+    <div class="h-card">
+      <img src="Masterclass_AI_29Maj_images/15_learns.jpg" alt="Meson vete">
+      <div>
+        <div class="icon" style="font-size:1.3rem;margin-bottom:2px">🧠</div>
+        <h4>Meson vete</h4>
+        <p>Sa me shume e perdor, aq me mire te njeh ty dhe biznesin tend.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 4: AI is changing everything -->
+<div class="slide">
+  <span class="tag">Revolucioni</span>
+  <h2>AI po ndryshon boten me shpejt se cdo gje tjeter</h2>
+  <div class="two-col" style="margin-top:12px">
+    <div class="vs-card before">
+      <h4>Bota e vjeter</h4>
+      <p>Websites kushtonin 2000€ dhe 2 muaj pune</p>
+      <p style="margin-top:10px">Chatbots kerkonin ekip programuesish</p>
+      <p style="margin-top:10px">Marketingu merrte ore te tera cdo dite</p>
+      <p style="margin-top:10px">Sherbimi klientit: ti duhej te ishe aty 24/7</p>
+    </div>
+    <div class="vs-card after">
+      <h4>Bota me AI</h4>
+      <p>Website ne 10 minuta, gati per kliente</p>
+      <p style="margin-top:10px">Chatbot qe shet ndersa ti fle</p>
+      <p style="margin-top:10px">Marketingu automatik, cdo dite, pa prekur gishtin</p>
+      <p style="margin-top:10px">AI u pergjigjet klienteve ne sekonda, 24 ore</p>
+    </div>
+  </div>
+  <p style="margin-top:20px;font-size:0.9rem;color:var(--gold-muted)">Pyetja nuk eshte "a do ta perdoresh AI". Pyetja eshte: <strong style="color:var(--cream)">a do jesh i pari apo i fundit?</strong></p>
+</div>
+
+<!-- SLIDE 5: The Fire -->
+<div class="slide">
+  <span class="tag">Zjarri</span>
+  <h2>Ata qe pershtaten, fitojne. Ata qe nuk pershtaten, zhduken.</h2>
+  <div class="bullet-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:14px;max-width:780px;width:100%;margin-top:20px;text-align:left">
+    <div class="card">
+      <h4 style="color:#c0392b">Pa AI</h4>
+      <p>Biznesi rri ne vend. Konkurrentet te kalojne. Ti vazhdon te punosh si robot.</p>
+    </div>
+    <div class="card">
+      <h4 style="color:var(--gold-light)">Me AI</h4>
+      <p>Biznesi rritet me shpejt. Ti punon me pak. Klientet jane me te kenaqur.</p>
+    </div>
+    <div class="card">
+      <h4 style="color:#c0392b">Pa AI</h4>
+      <p>12 ore pune ne dite. Fundjavat ne zyre. Familja te pret.</p>
+    </div>
+    <div class="card">
+      <h4 style="color:var(--gold-light)">Me AI</h4>
+      <p>AI punon per ty. Ti zgjedh sa ore do te punosh. Jeta jote, rregullat e tua.</p>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 6: Transition to Problem -->
+<div class="slide">
+  <span class="tag">Pjesa 2 · Problemi</span>
+  <h2>Por para se te flasim per zgjidhjen...</h2>
+  <p style="font-size:1.2rem;color:var(--cream);margin-bottom:6px;">Le te flasim per ty.</p>
+  <p style="font-size:1.05rem;color:var(--text-muted);max-width:650px;">Per biznesin tend. Per oret qe ke humbur. Per pushimet qe nuk i more kurre. Per familjen qe te pret.</p>
+</div>
+
+<!-- SLIDE 7: The Albanian Reality -->
+<div class="slide">
+  <span class="tag">Realiteti Shqiptar</span>
+  <h2>Ti je biznesi. Por biznesi nuk duhet te jete ti.</h2>
+  <div class="img-strip">
+    <div class="img-strip-card">
+      <img src="Masterclass_AI_29Maj_images/1_locked_in_business.jpg" alt="I mbyllur ne biznes">
+      <div class="img-strip-overlay">
+        <div class="strip-title">🔒 I Mbyllur ne Biznes</div>
+        <p>"Nuk dal dot nga dyqani. Cdo gje varet nga une."</p>
+      </div>
+    </div>
+    <div class="img-strip-card">
+      <img src="Masterclass_AI_29Maj_images/2_family_beach.jpg" alt="Familja ne plazh">
+      <div class="img-strip-overlay">
+        <div class="strip-title">👨‍👩‍👧 Familja te Pret</div>
+        <p>"Pushimet ne jug? Cdo vit i shtyj."</p>
+      </div>
+    </div>
+    <div class="img-strip-card">
+      <img src="Masterclass_AI_29Maj_images/3_stressed_owner.jpg" alt="Pronar i stresuar">
+      <div class="img-strip-overlay">
+        <div class="strip-title">😮‍💨 Çdo Gje Mbi Supe</div>
+        <p>"Nese semurem, biznesi ndalon."</p>
+      </div>
+    </div>
+    <div class="img-strip-card">
+      <img src="Masterclass_AI_29Maj_images/4_falling_behind.jpg" alt="Duke mbetur pas">
+      <div class="img-strip-overlay">
+        <div class="strip-title">🌍 Duke Mbetur Pas</div>
+        <p>"Tjeret po rriten. Une kam mbetur pas."</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 8: The emotional hit -->
+<div class="slide">
+  <span class="tag">Pyetje e Veshtire</span>
+  <h2>Sa here ke thene "do ta bej vitin tjeter"?</h2>
+  <div class="quote">
+    <p>"Kete vere do marr pushime."</p>
+    <p>"Do kaloj me shume kohe me familjen."</p>
+    <p>"Do sistemoj biznesin."</p>
+  </div>
+  <p style="margin-top:24px;font-size:1.1rem;color:var(--cream);max-width:650px;">Viti kalon. Asgje nuk ndryshon. Pse? Sepse <strong>ti je i vetmi qe mban cdo gje mbi supe.</strong></p>
+</div>
+
+<!-- SLIDE 9: The Cost -->
+<div class="slide">
+  <span class="tag">Cfare Po Humbet</span>
+  <h2>Po punon me shume se gjysma e Europes. Dhe fiton me pak.</h2>
+  <div class="two-col" style="text-align:center">
+    <div style="text-align:center">
+      <div class="big-stat">12+</div>
+      <div class="big-stat-label">Ore pune ne dite</div>
+    </div>
+    <div style="text-align:center">
+      <div class="big-stat">0</div>
+      <div class="big-stat-label">Sisteme automatike</div>
+    </div>
+  </div>
+  <p style="margin-top:28px;font-size:1rem;color:var(--text-muted);max-width:650px;">Bizneset e medha nuk punojne me shume ore. Ato punojne <strong style="color:var(--cream)">me zgjuar.</strong> Perdorin sisteme. Perdorin AI. Dhe tani, edhe ti mundesh.</p>
+</div>
+
+<!-- SLIDE 10: AI Solution Bridge -->
+<div class="slide">
+  <span class="tag">Pjesa 3 · Zgjidhja</span>
+  <h2>AI nuk eshte e ardhmja. AI eshte tani.</h2>
+  <p style="font-size:1.1rem;color:var(--cream);margin-bottom:16px;">Dhe eshte me e thjeshte se c'te kane thene.</p>
+  <div class="img-strip">
+    <div class="img-strip-card">
+      <img src="Masterclass_AI_29Maj_images/9_website.jpg" alt="Website Automatik">
+      <div class="img-strip-overlay">
+        <div class="strip-title">🌐 Website Automatik</div>
+        <p>AI te nderton nje website profesional ne minuta. Nuk te duhet programues.</p>
+      </div>
+    </div>
+    <div class="img-strip-card">
+      <img src="Masterclass_AI_29Maj_images/10_chatbot.jpg" alt="Chatbot inteligjent">
+      <div class="img-strip-overlay">
+        <div class="strip-title">🤖 Chatbot Inteligjent</div>
+        <p>Nje asistent qe u pergjigjet klienteve 24/7, shet produktet, nuk fle kurre.</p>
+      </div>
+    </div>
+    <div class="img-strip-card">
+      <img src="Masterclass_AI_29Maj_images/11_dashboard.jpg" alt="Dashboard">
+      <div class="img-strip-overlay">
+        <div class="strip-title">📊 Dashboard</div>
+        <p>Shiko cdo gje ne nje vend. Klientet, shitjet, statistikat. I qarte si uji.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 11: Industry Specific -->
+<div class="slide">
+  <span class="tag">Per Cdo Biznes</span>
+  <h2>Nuk ka rendesi se cfare biznesi ke. AI te sherben ty.</h2>
+  <div class="img-strip">
+    <div class="img-strip-card">
+      <img src="Masterclass_AI_29Maj_images/5_real_estate.jpg" alt="Agjensi Imobiliare">
+      <div class="img-strip-overlay">
+        <div class="strip-title">🏠 Agjensi Imobiliare</div>
+        <p>Chatbot qe tregon cdo prone. Website me listimet. AI kualifikon bleresit.</p>
+      </div>
+    </div>
+    <div class="img-strip-card">
+      <img src="Masterclass_AI_29Maj_images/6_barber.jpg" alt="Berber">
+      <div class="img-strip-overlay">
+        <div class="strip-title">💈 Berber / Sallon</div>
+        <p>Rezervime automatike 24/7. Klientet shkruajne, AI i vendos ne kalendar.</p>
+      </div>
+    </div>
+    <div class="img-strip-card">
+      <img src="Masterclass_AI_29Maj_images/7_agency.jpg" alt="Agjensi">
+      <div class="img-strip-overlay">
+        <div class="strip-title">🏢 Agjensi / Studio</div>
+        <p>Propozime nga AI. Kontrata. Follow-up automatik. Tenderat vijne vete.</p>
+      </div>
+    </div>
+    <div class="img-strip-card">
+      <img src="Masterclass_AI_29Maj_images/8_restaurant.jpg" alt="Restorant">
+      <div class="img-strip-overlay">
+        <div class="strip-title">🛒 Dyqan / Restorant</div>
+        <p>Menu dixhitale. Porosi automatike. AI menaxhon rezervimet ne sekonda.</p>
+      </div>
+    </div>
+  </div>
+  <p style="margin-top:12px;font-size:0.8rem;color:var(--gold-muted)">Cdo biznes ka nevoje per te njejtat gjera: website, kliente te kenaqur, dhe kohe. AI i jep te tria.</p>
+</div>
+
+<!-- SLIDE 12: The Dream Life -->
+<div class="slide">
+  <span class="tag">Jeta qe Te Pret</span>
+  <h2>Imagjino te zgjohesh ne mengjes dhe...</h2>
+  <div class="card-grid cols3" style="text-align:center">
+    <div class="card" style="text-align:center">
+      <div class="icon">☕</div>
+      <h4>Ti pi kafe</h4>
+      <p>AI iu ka pergjigjur 15 klienteve qe ne oren 6 te mengjesit. Ti as qe je zgjuar akoma.</p>
+    </div>
+    <div class="card" style="text-align:center">
+      <div class="icon">🏖️</div>
+      <h4>Ti je ne plazh</h4>
+      <p>Chatbot-i yt po shet. Website po sjell kliente. Dashboard tregon cdo gje ne telefon.</p>
+    </div>
+    <div class="card" style="text-align:center">
+      <div class="icon">😴</div>
+      <h4>Ti fle i qete</h4>
+      <p>Biznesi yt punon nderkohe qe ti fle. Ashtu sic duhet te jete. Ashtu sic e meriton.</p>
+    </div>
+  </div>
+  <div class="quote" style="margin-top:24px">
+    <p>"AI eshte punonjesi qe do te kisha marre po te kisha buxhet per 10 veta. Tani e kam, dhe nuk me kushton gati asgje."</p>
+    <div class="attrib">Pronar biznesi shqiptar, 2025</div>
+  </div>
+</div>
+
+<!-- SLIDE 13: Transition to Offer -->
+<div class="slide">
+  <span class="tag">E Verteta</span>
+  <h2>E gjithe kjo eshte e mundur. Dhe eshte me e thjeshte se c'mendon.</h2>
+  <p style="font-size:1.1rem;color:var(--cream);max-width:700px;margin-bottom:8px;">Por dikush duhet te ta tregoje rrugen.</p>
+  <p style="font-size:1rem;color:var(--text-muted);max-width:650px;">Nuk mjafton te shohesh video ne YouTube. Te duhet nje plan. Nje sistem. Dike qe ta nderton <strong style="color:var(--cream)">bashke me ty.</strong></p>
+</div>
+
+<!-- SLIDE 14: The Offer -->
+<div class="slide">
+  <span class="tag">Pjesa 4 · Oferta</span>
+  <h2>Workshop 3-Ditor ne Tirane</h2>
+  <p style="font-size:1.2rem;color:var(--cream);margin-bottom:4px;">5 · 6 · 7 Qershor</p>
+  <p style="font-size:0.95rem;color:var(--text-muted);margin-bottom:16px;">3 dite intensive. Ne person. Dil me mjete AI te gatshme + aftesi qe automatizojne cdo gje.</p>
+  <div class="two-col" style="text-align:left;gap:24px">
+    <div>
+      <h3 style="text-align:center;margin-bottom:14px">🤖 Mjetet AI qe Do Ndertosh</h3>
+      <div class="feat" style="margin-bottom:10px">
+        <div class="feat-icon">🌐</div>
+        <div><h4>Website Profesional</h4><p>I gatshem per kliente. Ndertuar nga zero, per biznesin tend.</p></div>
+      </div>
+      <div class="feat" style="margin-bottom:10px">
+        <div class="feat-icon">🤖</div>
+        <div><h4>Chatbot Inteligjent 24/7</h4><p>Njeh biznesin tend. Shet. Perzgjigjet. Nuk fle kurre.</p></div>
+      </div>
+      <div class="feat" style="margin-bottom:10px">
+        <div class="feat-icon">📊</div>
+        <div><h4>Dashboard Personal</h4><p>Klientet, shitjet, statistikat. Gjithcka ne nje vend.</p></div>
+      </div>
+      <div class="feat">
+        <div class="feat-icon">🔧</div>
+        <div><h4>Zgjidhje me Porosi</h4><p>Cdo gje qe biznesi yt ka nevoje. E ndertojme bashke.</p></div>
+      </div>
+    </div>
+    <div>
+      <h3 style="text-align:center;margin-bottom:14px">🧠 Aftesi AI qe Do Mjeshtrosh</h3>
+      <div class="feat" style="margin-bottom:10px">
+        <div class="feat-icon">🎬</div>
+        <div><h4>Avatar AI per Video</h4><p>Krijo video me avatarin tend. Permbajtje e pafundme, edhe nga plazhi.</p></div>
+      </div>
+      <div class="feat" style="margin-bottom:10px">
+        <div class="feat-icon">🗣️</div>
+        <div><h4>Zeri & Gjuhe me AI</h4><p>Flet ne cdo gjuhe, me cdo ze. Klientet te degjojne sikur te jesh aty.</p></div>
+      </div>
+      <div class="feat" style="margin-bottom:10px">
+        <div class="feat-icon">🔗</div>
+        <div><h4>Orkestrimi i AI-ve</h4><p>Lidh te gjitha AI-te bashke. Sistemi yt ne autopilot 24/7.</p></div>
+      </div>
+      <div class="feat">
+        <div class="feat-icon">🚀</div>
+        <div><h4>Automatizim i Plote</h4><p>Nga marketingu te shitjet. Cdo gje qe ben sot me dore, AI e ben per ty.</p></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 15: Workshop Day by Day -->
+<div class="slide">
+  <span class="tag">Programi</span>
+  <h2>Cfare do te mesosh cdo dite</h2>
+  <div class="card-grid cols3" style="text-align:center">
+    <div class="card" style="text-align:center">
+      <div style="font-family:'Georgia',serif;font-size:1.8rem;color:var(--gold-light)">Dita 1</div>
+      <div style="font-size:0.7rem;color:var(--text-muted);margin-bottom:10px">5 Qershor</div>
+      <h4>AI dhe Biznesi Yt</h4>
+      <p>Kupto AI. Konfiguro mjetet. Nderto strategjine tende te automatizimit.</p>
+    </div>
+    <div class="card" style="text-align:center">
+      <div style="font-family:'Georgia',serif;font-size:1.8rem;color:var(--gold-light)">Dita 2</div>
+      <div style="font-size:0.7rem;color:var(--text-muted);margin-bottom:10px">6 Qershor</div>
+      <h4>Ndertimi i Sistemeve</h4>
+      <p>Website. Chatbot. Automatizimi i komunikimit. Gjithcka merr jete.</p>
+    </div>
+    <div class="card" style="text-align:center">
+      <div style="font-family:'Georgia',serif;font-size:1.8rem;color:var(--gold-light)">Dita 3</div>
+      <div style="font-size:0.7rem;color:var(--text-muted);margin-bottom:10px">7 Qershor</div>
+      <h4>Launch dhe Rritja</h4>
+      <p>Dashboard. Marketingu automatik. Dil me nje biznes qe punon 24/7.</p>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 16: What Makes This Different -->
+<div class="slide">
+  <span class="tag">Pse Ky Workshop</span>
+  <h2>Cfare e ben te ndryshem nga cdo gje tjeter?</h2>
+  <div class="two-col">
+    <div class="vs-card before">
+      <h4>Workshop-et e Tjere</h4>
+      <p>Teoria. Slide. Shko ne shtepi dhe harron 90%.</p>
+      <p style="margin-top:10px">Nuk prek asnje mjet konkret.</p>
+      <p style="margin-top:10px">Zero rezultat ne fund te dites.</p>
+      <p style="margin-top:10px">Vetem njohuri. Asnje produkt.</p>
+    </div>
+    <div class="vs-card after">
+      <h4>Workshop-i Yne</h4>
+      <p>3 dite. Ne person. Me duart ne tastiere.</p>
+      <p style="margin-top:10px">Website REAL. Chatbot REAL. Dashboard REAL.</p>
+      <p style="margin-top:10px">Dil me produkte te perfunduara.</p>
+      <p style="margin-top:10px">Njohuri + Produkte + Sistem.</p>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 17: Price Reveal -->
+<div class="slide">
+  <span class="tag">Cfare Kushton</span>
+  <h2>Sa do te paguante nje biznes per gjithe kete?</h2>
+  <div style="margin-top:14px;text-align:center">
+    <p style="font-size:1rem;color:var(--text-muted);">Website profesional: <strong style="color:var(--cream)">1000€+</strong></p>
+    <p style="font-size:1rem;color:var(--text-muted);">Chatbot inteligjent 24/7: <strong style="color:var(--cream)">800€+</strong></p>
+    <p style="font-size:1rem;color:var(--text-muted);">Dashboard personal: <strong style="color:var(--cream)">600€+</strong></p>
+    <p style="font-size:1rem;color:var(--text-muted);">3 dite trajnim ne person: <strong style="color:var(--cream)">pa cmim</strong></p>
+  </div>
+  <div style="position:relative;display:inline-block;margin-top:20px">
+    <div style="background:rgba(200,57,43,0.06);border:1px solid rgba(200,57,43,0.2);border-radius:var(--radius);padding:20px 36px">
+      <p style="font-size:0.8rem;color:var(--text-muted);margin-bottom:2px;">Vlera totale</p>
+      <div style="font-size:clamp(2.4rem,5.5vw,4rem);font-family:'Georgia',serif;font-weight:700;color:#c0392b;position:relative;display:inline-block">
+        <span style="position:relative">2.400€+</span>
+        <span style="position:absolute;top:50%;left:-8%;width:116%;height:4px;background:#c0392b;transform:translateY(-50%) rotate(-8deg)"></span>
+      </div>
+    </div>
+  </div>
+  <p style="margin-top:22px;font-size:0.9rem;color:var(--text-muted);">Kjo eshte sa paguan nje biznes i zakonshem. Por jo ti.</p>
+</div>
+
+<!-- SLIDE 18: The Real Price -->
+<div class="slide">
+  <span class="tag">Oferta e Masterclass-it</span>
+  <h2>Vetem per ty, sot.</h2>
+  <div style="display:flex;align-items:center;justify-content:center;gap:30px;margin-top:20px;flex-wrap:wrap">
+    <div style="text-align:center">
+      <p style="font-size:0.8rem;color:var(--text-muted);margin-bottom:4px;letter-spacing:2px;">TE PARET 15</p>
+      <div class="offer-price" style="font-size:clamp(3rem,7vw,5rem);font-family:'Georgia',serif;font-weight:700;color:var(--gold-light);line-height:1">250€</div>
+      <p style="font-size:0.85rem;color:var(--cream);margin-top:4px;">per person</p>
+    </div>
+    <div style="width:1px;height:70px;background:rgba(200,160,32,0.2)"></div>
+    <div style="text-align:center;opacity:0.55">
+      <p style="font-size:0.75rem;color:var(--text-muted);margin-bottom:4px;letter-spacing:2px;">MBI 15 VENDE</p>
+      <div style="font-size:clamp(2rem,4vw,3rem);font-family:'Georgia',serif;font-weight:700;color:var(--text-muted);line-height:1">500€</div>
+      <p style="font-size:0.78rem;color:var(--text-muted);margin-top:4px;">per person</p>
+    </div>
+  </div>
+  <div style="margin-top:24px;padding:14px 28px;background:rgba(200,160,32,0.08);border:1px solid rgba(200,160,32,0.2);border-radius:50px;display:inline-block">
+    <p style="font-size:0.9rem;color:var(--cream);margin:0">💰 E gjithe vlera <strong style="color:var(--gold-light)">2.400€+</strong> per vetem <strong style="color:var(--gold-light);font-size:1.2rem">250€</strong> — nese je nder 15 te paret.</p>
+  </div>
+  <p style="margin-top:14px;font-size:0.75rem;color:var(--text-muted);">Çmimi rritet ne 500€ pasi te mbushen 15 vendet e para. Vepro tani.</p>
+</div>
+
+<!-- SLIDE 19: Scarcity -->
+<div class="slide">
+  <span class="tag">Vende te Kufizuara</span>
+  <h2>Pse duhet te veprosh tani</h2>
+  <div class="two-col" style="text-align:center">
+    <div style="text-align:center">
+      <div class="big-stat">15</div>
+      <div class="big-stat-label">Vende me 250€</div>
+      <p style="font-size:0.85rem;color:var(--text-muted);margin-top:8px;">Vetem 15 persona marrin cmimin special. Pastaj shkon 500€.</p>
+    </div>
+    <div style="text-align:center">
+      <div class="big-stat" style="color:#c0392b">1</div>
+      <div class="big-stat-label">Here ne Vit</div>
+      <p style="font-size:0.85rem;color:var(--text-muted);margin-top:8px;">Ky workshop nuk perseritet. Ose tani, ose vitin tjeter.</p>
+    </div>
+  </div>
+  <p style="margin-top:24px;font-size:1.05rem;color:var(--cream);">Nese e di qe ky eshte hapi tjeter per biznesin tend, <strong>vendin e ke tani. Me 250€.</strong></p>
+</div>
+
+<!-- SLIDE 20: Guarantee -->
+<div class="slide">
+  <span class="tag">Garancia</span>
+  <h2>Pa rrezik. Plotësisht.</h2>
+  <div style="text-align:center;max-width:650px">
+    <div style="font-size:3rem;margin-bottom:12px">🛡️</div>
+    <p style="font-size:1.05rem;color:var(--cream);line-height:1.7;">Nese ne fund te dites se pare nuk ke mesuar dicka qe mund ta perdoresh menjehere ne biznesin tend, <strong style="color:var(--gold-light)">te kthejme cdo qindarke.</strong> Pa pyetje.</p>
+    <p style="margin-top:16px;font-size:0.9rem;color:var(--text-muted);">Zero rrezik. Vetem rritje.</p>
+  </div>
+</div>
+
+<!-- SLIDE 21: Final CTA -->
+<div class="slide">
+  <span class="tag">Vendimi</span>
+  <h2>Biznesi yt nuk do te rritet duke bere te njejtat gjera.</h2>
+  <div class="quote">
+    <p>"Momentet me te medha ne jete vijne kur ti vendos te marresh kontrollin. Jo vitin tjeter. Jo muajin tjeter. Por tani."</p>
+  </div>
+  <div class="two-col" style="margin-top:24px;text-align:center">
+    <div class="vs-card before">
+      <h4>Vazhdo si me pare</h4>
+      <p>Nje vit tjeter qe kalon. Te njejtat probleme. Te njejtat justifikime.</p>
+    </div>
+    <div class="vs-card after">
+      <h4>Bej hapin</h4>
+      <p>3 dite qe ndryshojne menyren se si funksionon biznesi yt pergjithmone.</p>
+    </div>
+  </div>
+  <a class="cta" href="#" style="margin-top:28px;font-size:1.15rem;padding:16px 50px;">REZERVO VENDIN TANI</a>
+  <p style="margin-top:14px;font-size:0.75rem;color:var(--text-muted);">Link-u ne chat / email</p>
+</div>
+
+<!-- SLIDE 22: Q&A -->
+<div class="slide">
+  <span class="tag">Pyetje & Pergjigje</span>
+  <h2>Keni pyetje? Le t'i diskutojme.</h2>
+  <p style="font-size:1.1rem;color:var(--text-muted);max-width:680px;">Shkruani pyetjet tuaja ne chat. Cdo pyetje eshte e mireseardhur.</p>
+  <div style="margin-top:30px;font-size:0.8rem;color:var(--text-muted);letter-spacing:2px;font-family:'SF Mono','Menlo',monospace">BEYOND MONEY MINDS</div>
+</div>
+
+</div>
+
+<div class="nav-bar" id="nav">
+  <button class="nav-arrow" id="prev">◂</button>
+  <span class="slide-num" id="counter">1 / 22</span>
+  <button class="nav-arrow" id="next">▸</button>
+  <div id="dots" style="display:flex;gap:6px;margin-left:12px"></div>
+</div>
+
+<script>
+(function(){
+  var slides = document.querySelectorAll('.slide, .hero-slide');
+  var total = slides.length;
+  var current = 0;
+  var dots = document.getElementById('dots');
+  var counter = document.getElementById('counter');
+  var progress = document.getElementById('progress');
+
+  for(var i=0;i<total;i++){
+    var d = document.createElement('div');
+    d.className = 'nav-dot' + (i===0 ? ' active' : '');
+    d.setAttribute('data-i', i);
+    d.onclick = function(){ go(parseInt(this.getAttribute('data-i'))); };
+    dots.appendChild(d);
+  }
+
+  function go(i){
+    if(i<0||i>=total)return;
+    slides[current].classList.remove('active');
+    dots.children[current].classList.remove('active');
+    current = i;
+    slides[current].classList.add('active');
+    dots.children[current].classList.add('active');
+    counter.textContent = (current+1) + ' / ' + total;
+    progress.style.width = ((current+1)/total*100)+'%';
+  }
+
+  document.getElementById('prev').onclick = function(){ go(current-1); };
+  document.getElementById('next').onclick = function(){ go(current+1); };
+  document.addEventListener('keydown',function(e){
+    if(e.key==='ArrowRight'||e.key==='ArrowDown'){ e.preventDefault(); go(current+1); }
+    if(e.key==='ArrowLeft'||e.key==='ArrowUp'){ e.preventDefault(); go(current-1); }
+  });
+
+  // Swipe
+  var touchX = 0;
+  document.addEventListener('touchstart',function(e){ touchX = e.touches[0].clientX; });
+  document.addEventListener('touchend',function(e){
+    var diff = touchX - e.changedTouches[0].clientX;
+    if(Math.abs(diff)>50){ go(diff>0 ? current+1 : current-1); }
+  });
+})();
+</script>
+
+</body>
+</html>
